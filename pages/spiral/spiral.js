@@ -37,7 +37,9 @@ Page({
     context.drawImage('../assets/clock-icon.png', 108, 110, 80, 80);
     //图形绘制
     context.translate(150, 150);
-    for(var i = 0; i< 48; i++) {
+    context.rotate(sectorBlock*6);
+    for(var i = 6; i< 48+6; i++) {
+      
       this.createSector(context, i, ratio);
       context.fill();
       context.scale(ratio, ratio);
