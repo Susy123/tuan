@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/spiral/spiral",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/page1/onbirth"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "团团粉丝团",
+    "navigationBarTextStyle": "black"
+  }
+}

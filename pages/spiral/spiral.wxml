@@ -1,0 +1,6 @@
+<!--pages/spiral/spiral.wxml-->
+<view>日期：2018-03-24</view>
+<view>当日小结</view>
+<view>入睡难度 妈妈状态</view>
+<view>吃  玩   睡</view>
+<canvas canvas-id="spiral" style="height:750rpx;width:750rpx;" />

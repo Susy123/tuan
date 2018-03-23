@@ -1,0 +1,7 @@
+<!--pages/page1/onbirth.wxml-->
+<!-- <text>pages/page1/onbirth.wxml</text> -->
+<view class="container">
+    <image src="../assets/2.jpg"></image>
+    <text>2017年7月6日</text>
+    <text>团团出生了</text>
+</view>

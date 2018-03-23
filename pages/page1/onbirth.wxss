@@ -1,0 +1,4 @@
+/* pages/page1/onbirth.wxss */
+.container {
+  align-items: center;
+}
