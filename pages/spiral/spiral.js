@@ -3,6 +3,47 @@ Page({
   canvasIdErrorCallback: function (e) {
     console.error(e.detail.errMsg);
   },
+  createSector: function (context, i, ratio = 0.98) {
+    context.beginPath();
+    context.setFillStyle('rgba(255,0,0,0.5)');
+    var sectorBlock = 1 / 12 * Math.PI;
+    var sectorRatio = 19 / 20;// 扇形/（扇形+间隙）
+    var sector = sectorBlock * sectorRatio;
+    var xOffset = 5, yOffset = 5;// 时钟数字的中心偏移
+    context.arc(0, 0, 150, 0, sector);
+    context.arc(0, 0, 110, sector, 0, true);
+
+    if(i%2 == 0) {
+      var rNum = 160 * (ratio ** i);
+      var clockNum = i / 2 + 3 > 24 ? i / 2 + 3 - 24 : i / 2 + 3;
+      context.save();
+      context.scale((1 / ratio) ** i, (1 / ratio) ** i);
+      context.rotate(0 - sectorBlock * i);
+      context.translate(0 - xOffset - rNum * (1 - Math.cos(sectorBlock * i)), yOffset + rNum * Math.sin(sectorBlock * i));
+      context.font = "10px sans-serif";
+      context.setFillStyle("black");
+      context.fillText(clockNum, rNum, 0);
+      context.restore();
+    }
+    context.closePath();
+
+  },
+  drawSpiral: function (context) {
+    var sectorBlock = 1 / 12 * Math.PI;
+    var ratio = 0.98;
+
+    context.setFillStyle("#EEEEFF");
+    context.fillRect(0, 0, 350, 300);
+    context.drawImage('../assets/clock-icon.png', 108, 110, 80, 80);
+    //图形绘制
+    context.translate(150, 150);
+    for(var i = 0; i< 48; i++) {
+      this.createSector(context, i, ratio);
+      context.fill();
+      context.scale(ratio, ratio);
+      context.rotate(sectorBlock);
+    }
+  },
   /**
    * 页面的初始数据
    */
@@ -21,75 +62,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (e) {
-    var d = 25;// 圆半径相差大小
-    var sectorRatio = 19/20;// 扇形/（扇形+间隙）
-    var r1=120,r2=r1-d,r3=r2-d,r4=r3-d,r0=r1+d;
-    var x1=150,y1=150;
-    var x2 = x1 - (r1 - r2), y2=y1;
-
     //使用wx.createContext获取绘图上下文context
     var context = wx.createContext();
-    // context.beginPath();
-    // context.setStrokeStyle("#00ff00");
-    // context.setLineWidth(2);
-    // context.rect(0, 0, 300, 300);
-    // context.stroke();
     
-    context.drawImage('../assets/clock-icon.png', 100, 125, 50, 50);
-    context.setLineWidth(35)
-    // 设定扇形和间隙的大小
-    var sectorBlock = 1 / 12 * Math.PI
-    var sector = 1 / 12 * Math.PI * sectorRatio;
-    var gap = 1 / 12 * Math.PI * (1 - sectorRatio);
-    // 顺时针画螺旋圆
-    context.moveTo(x1+r1, y1);
-    for(var i=0;i<12;i++) {
-      context.beginPath();
-      context.setStrokeStyle("#BFEFFF");
-      context.arc(x1, y1, r1, i * sectorBlock, i * sectorBlock + sector);
-      context.stroke();
-      context.beginPath();
-      context.setStrokeStyle("#ffffff");
-      context.arc(x1, y1, r1, i * sectorBlock + sector, (i + 1) * sectorBlock);
-      context.stroke();
-    }
-    for (var i = 0; i < 12; i++) {
-      context.beginPath();
-      context.setStrokeStyle("#BFEFFF");
-      context.arc(x2, y2, r2, Math.PI + i * sectorBlock, Math.PI+(i * sectorBlock + sector));
-      context.stroke();
-      context.beginPath();
-      context.setStrokeStyle("#ffffff");
-      context.arc(x2, y2, r2, Math.PI + (i * sectorBlock + sector), Math.PI +(i + 1) * sectorBlock);
-      context.stroke();
-    }
-    for (var i = 0; i < 12; i++) {
-      context.beginPath();
-      context.setStrokeStyle("#BFEFFF");
-      context.arc(x1, y1, r3, i * sectorBlock, i * sectorBlock + sector);
-      context.stroke();
-      context.beginPath();
-      context.setStrokeStyle("#ffffff");
-      context.arc(x1, y1, r3, i * sectorBlock + sector, (i + 1) * sectorBlock);
-      context.stroke();
-    }
-    for (var i = 0; i < 12; i++) {
-      context.beginPath();
-      context.setStrokeStyle("#BFEFFF");
-      context.arc(x2, y2, r4, Math.PI + i * sectorBlock, Math.PI + (i * sectorBlock + sector));
-      context.stroke();
-      context.beginPath();
-      context.setStrokeStyle("#ffffff");
-      context.arc(x2, y2, r4, Math.PI + (i * sectorBlock + sector), Math.PI + (i + 1) * sectorBlock);
-      context.stroke();
-    }
-    // context.beginPath();
-    // context.setStrokeStyle("#BFEFFF");
-    // context.arc(x1, y1, r1, 0, Math.PI);
-    // context.arc(x2, y2, r2, Math.PI, 0);
-    // context.arc(x1, y1, r3, 0, Math.PI);
-    // context.arc(x2, y2, r4, Math.PI, 0);
-    // context.stroke();
+    this.drawSpiral(context);
 
     //调用wx.drawCanvas，通过canvasId指定在哪张画布上绘制，通过actions指定绘制行为
     wx.drawCanvas({
