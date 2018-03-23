@@ -1,7 +1,24 @@
 <!--pages/spiral/spiral.wxml-->
-<view>日期：2018-03-24</view>
-<view>当日小结</view>
-<view>入睡难度 妈妈状态</view>
+<view class="section">
+  <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+    <view class="picker">
+      当前日期: {{date}}
+      宝宝年纪：{{ageY}}年 {{ageM}}月 {{ageD}}日
+    </view>
+  </picker>
+</view>
+<view class="section section_gap">
+  <text class="section__title">入睡难度：</text>
+  <view class="body-view">
+    轻松<slider bindchange="slider4sleep" min="0" max="10" show-value/>困难
+  </view>
+</view>
+<view class="section section_gap">
+  <text class="section__title">妈妈状态：</text>
+  <view class="body-view">
+    愉快<slider bindchange="slider4mom" min="0" max="10" show-value/>烦恼
+  </view>
+</view>
 <view>吃  玩   睡</view>
 <view class='spiral'>
   <canvas canvas-id="spiral" style="height:750rpx;width:750rpx;" />

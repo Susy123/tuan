@@ -38,6 +38,7 @@ Page({
     //图形绘制
     context.translate(150, 150);
     context.rotate(sectorBlock*6);
+    // context.scale(1.5,1.5); // 点击放大
     for(var i = 6; i< 48+6; i++) {
       
       this.createSector(context, i, ratio);
@@ -50,7 +51,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    date: '2018-03-24',
+    ageY: 0,
+    ageM: 8,
+    ageD: 15,
+  },
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
   },
 
   /**
