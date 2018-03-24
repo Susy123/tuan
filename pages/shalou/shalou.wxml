@@ -1,0 +1,4 @@
+<!--pages/shalou/shalou.wxml-->
+<view class='shalou'>
+  <canvas canvas-id="shalou-canvas" class='canvas'/>
+</view>

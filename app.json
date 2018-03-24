@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/shalou/shalou",
     "pages/spiral/spiral",
     "pages/index/index",
     "pages/logs/logs",

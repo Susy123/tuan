@@ -21,6 +21,6 @@
 </view>
 <view>吃  玩   睡</view>
 <view class='spiral'>
-  <canvas canvas-id="spiral" style="height:750rpx;width:750rpx;" />
+  <canvas canvas-id="spiral" class='canvas'/>
 </view>
 
