@@ -103,7 +103,7 @@ Block.prototype = {
         }
       }
     }
-    // mainContext.draw();
+    
     //若方块下落完毕，将方块加入到已下落方块矩阵中
     if (this.end == 1) {
       for (var i = 0; i < 4; i++) {
@@ -114,6 +114,14 @@ Block.prototype = {
         }
       }
     }
+    for (var k = 0; k <16; k++) {
+      for (var l = 0; l < 10; l++) {
+        if (allBlock[k][l]){
+          drawBlockImg(allBlock[k][l], k, l);
+        }
+      }
+    }
+    mainContext.draw();
   },
   //顺时针旋转方块90度
   changeBlock: function () {
@@ -381,25 +389,24 @@ function clearBefore() {
 
 // -----canvas function-----------------
 function clearCanvasBlock(x, y) {
-  mainContext.clearRect(y * blockItemWidth, x * blockItemWidth, blockItemWidth, blockItemWidth);
-  mainContext.draw();
-  console.log('mainContext clear:', 'x=',x,'y=',y);
+  // mainContext.clearRect(y * blockItemWidth, x * blockItemWidth, blockItemWidth, blockItemWidth);
+  // mainContext.draw();
+  // console.log('mainContext clear:', 'x=',x,'y=',y);
 }
 function clearNextContext() {
-  nextContext.clearRect(0, 0, 138, 138);
-  nextContext.draw();
-  console.log('nextContext clear');
+  // nextContext.clearRect(0, 0, 138, 138);
+  // nextContext.draw();
+  // console.log('nextContext clear');
+
 }
 function drawBlockImgNext(imgNum, x, y) {
   var imgSrc = '../imgs/' + imgNum + '.jpg';
   nextContext.drawImage(imgSrc, y * blockItemWidth, x * blockItemWidth, blockItemWidth, blockItemWidth);
-  // nextContext.draw();
   console.log('nextContext draw:', 'imgNum=', imgNum, 'x=', x, 'y=', y);
 }
 function drawBlockImg(imgNum, x, y) {
   var imgSrc = '../imgs/' + imgNum + '.jpg';
   mainContext.drawImage(imgSrc, y * blockItemWidth, x * blockItemWidth, blockItemWidth, blockItemWidth);
-  // mainContext.draw();
   console.log('mainContext draw:', 'imgNum=', imgNum, 'x=', x, 'y=', y);
 }
 //显示下一块方块nextCanvas
@@ -413,7 +420,7 @@ function printNext() {
       }
     }
   }
-  // nextContext.draw();
+  nextContext.draw();
 }
 
 Page({
@@ -444,11 +451,13 @@ Page({
         for (var k = i; k > 0; k--) {
           for (var l = 0; l < 10; l++) {
             clearCanvasBlock(k, l);
-            drawBlockImg(allBlock[k][l], k, l);
+            if (allBlock[k][l]){
+              drawBlockImg(allBlock[k][l], k, l);
+            }
             z_index[k][l] = z_index[k - 1][l];
           }
         }
-        // mainContext.draw();
+        mainContext.draw();
       }
     }
   },
@@ -484,9 +493,6 @@ Page({
       }
       this.getScore();
       block_now.pos[0]++;
-      // 只在定时器里每分钟画一次，以免小程序里draw会覆盖
-      mainContext.draw();
-      nextContext.draw();
     }.bind(this), speed);
   },
 
@@ -534,9 +540,6 @@ Page({
         }
         this.getScore();
         block_now.pos[0]++;
-        // 只在定时器里每分钟画一次，以免小程序里draw会覆盖
-        mainContext.draw();
-        nextContext.draw();
       }.bind(this), speed);
       this.setData({
         startOrpause: '暂停'
