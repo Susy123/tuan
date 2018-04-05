@@ -444,7 +444,9 @@ Page({
         }
       }
       if (s == 10) {
-        this.data.score = this.data.score + 1;
+        this.setData({
+          score: this.data.score + 1
+        })
         allBlock.splice(i, 1);
         allBlock.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
         clearBefore();
@@ -457,7 +459,7 @@ Page({
             z_index[k][l] = z_index[k - 1][l];
           }
         }
-        mainContext.draw();
+        // mainContext.draw();
       }
     }
   },
@@ -486,7 +488,7 @@ Page({
           wx.showToast({
             title: 'Game Over !!',
           })
-          this.onLoad();
+          this.restart();
         } else {
           this.play();
         }
@@ -533,7 +535,7 @@ Page({
               title: 'Game Over !!',
             });
             // location.reload();
-            this.onLoad();
+            this.restart();
           } else {
             this.play();
           }
@@ -548,7 +550,22 @@ Page({
     
   },
   restart: function(){
-    this.onLoad();
+    clearInterval(start);
+    mainContext.clearRect((0, 0, 500, 800));
+    nextContext.clearRect((0, 0, 138, 138));
+    clear(beforeBlock);
+    clear(allBlock);
+    for (var i = 0; i < 16; i++) {
+      for (var j = 0; j < 10; j++) {
+        z_index[i][j] = 0;
+      }
+    }
+    mainContext.draw();
+    nextContext.draw();
+    this.setData({
+      score: 0, //得分
+      startOrpause: '开始'
+    });
   },
 
   /**
