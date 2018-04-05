@@ -33,7 +33,8 @@ Page({
     clearInterval(this.showLeft);
     clearInterval(this.interval);
     this.setData({
-      timesNum: 0
+      timesNum: 0,
+      leftTime: this.secondsToHms(this.data.minuteSet * 60) 
     })
     var timesTotal = this.data.minuteSet * 60 * 1000 / this.redrawTimeSlot;
     this.timeSlot = 100 / timesTotal;
@@ -205,21 +206,38 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.redrawTimeSlot = 40;// 每40ms重画一次，比较流程
+    var timesTotal = this.data.minuteSet * 60 * 1000 / this.redrawTimeSlot;
+    this.timeSlot = 100 / timesTotal;
+    this.timesCount = 0
+
+    this.drawShalou();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    clearInterval(this.showLeft);
+    clearInterval(this.interval);
+    this.setData({
+      leftTime: '00:00',
+      timesNum: 100
+    });
+    this.timesCount = 0;
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    clearInterval(this.showLeft);
+    clearInterval(this.interval);
+    this.setData({
+      leftTime: '00:00',
+      timesNum: 100
+    });
+    this.timesCount = 0;
   },
 
   /**

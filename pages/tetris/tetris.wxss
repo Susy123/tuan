@@ -1,0 +1,67 @@
+/* pages/tetris/tetris.wxss */
+page {
+  background-color: rgb(237, 228, 199);
+  height: 100%;
+  color: #666;
+  font-size: 42rpx;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.screen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.main-screen {
+  width:520rpx;
+  height: 820rpx;
+  border:3px solid rgb(244, 237, 221);
+  display: flex;
+  background-color: rgb(232, 221, 199);
+}
+.next-screen {
+  background-color: rgb(232, 221, 199);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.main-canvas {
+  width: 500rpx;
+  height: 800rpx;
+}
+.side-screen {
+   height: 800rpx;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.side-screen button{
+  font-size: 42rpx;
+}
+.next-canvas {
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+  width: 180rpx;
+  height: 180rpx;
+}
+.buttonarea {
+  width: 100%;
+}
+.move-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around
+}
+button {
+  width: 150rpx;
+}

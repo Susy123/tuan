@@ -1,0 +1,27 @@
+<!--pages/tetris/tetris.wxml-->
+<view class='container'>
+    <view class='screen'>
+        <view class='main-screen'>
+            <canvas class='main-canvas' canvas-id="mainCanvas"></canvas>
+        </view>
+        <view class='side-screen'>
+            <text class=''>下一个:</text>
+            <view class='next-screen'>
+              <canvas class='next-canvas' canvas-id='nextCanvas'></canvas>
+            </view>
+            <text class='score'>得分：{{score}}</text>
+            <button bindtap='restart'>结束</button>
+            <button bindtap='startOrpause'>{{startOrpause}}</button>
+        </view>
+    </view>
+    <view class='buttonarea'>
+        <view class='rotate-button'>
+          <button bindtap='rotateClick'>旋转</button>
+        </view>
+        <view class='move-button'>
+          <button bindtap='leftClick'>左</button>
+          <button bindtap='rightClick'>右</button>
+        </view>
+        <view class='end-button'><button bindtap='downClick'>下</button></view>
+    </view>
+</view>

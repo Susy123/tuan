@@ -1,15 +1,16 @@
 {
   "pages": [
-    "pages/shalou/shalou",
-    "pages/spiral/spiral",
+    "pages/tetris/tetris",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/page1/onbirth"
+    "pages/page1/onbirth",
+    "pages/spiral/spiral"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "小沙漏",
+    "navigationBarTitleText": "作息记录",
     "navigationBarTextStyle": "black"
   }
 }

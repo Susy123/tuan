@@ -1,8 +1,9 @@
 <!--pages/shalou/shalou.wxml-->
-设置时间： <button class="minute minute-sub"  bindtap="bindMinuteSub"> - </button>
-<input type="digit" value='{{minuteSet}}' bindinput="bindKeyInput"></input>
-<button class="minute minute-add"  bindtap="bindMinuteAdd"> + </button>分钟
-<view>剩余时间：{{leftTime}}</view>
+<view><label class='minute'>设置时间： </label><button class="minute minute-sub"  bindtap="bindMinuteSub"> - </button>
+<input type="digit" class="minute input" value='{{minuteSet}}' bindinput="bindKeyInput"></input>
+<button class="minute minute-add"  bindtap="bindMinuteAdd"> + </button><label >分钟</label></view>
+
+<view class="timeleft clear">剩余时间：{{leftTime}}</view>
 <view class='shalou'>
   <canvas canvas-id="shalou-canvas" class='canvas'/>
   
